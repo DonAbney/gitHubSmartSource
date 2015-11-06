@@ -9,7 +9,5 @@ class GitHubFilter {
 
     def locationSearch(searchCriteria) {
         gitHubApi.search(searchCriteria)
-        []
-
     }
 }

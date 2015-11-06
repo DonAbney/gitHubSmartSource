@@ -2,10 +2,17 @@ import spock.lang.Specification
 
 class GitHubFilterTest extends Specification{
 
+    GitHubFilter gitHubFilter
+    def gitHubAPI
+
+    def setup() {
+	gitHubAPI = Mock(GitHubAPI)
+        gitHubFilter = new GitHubFilter(gitHubAPI)
+    }
+
     def "location search returns list"() {
         setup:
-	def gitHubAPI = Mock(GitHubAPI)
-        GitHubFilter gitHubFilter = new GitHubFilter(gitHubAPI)
+	gitHubAPI.search('anyLocationString') >> {[]}
         when:
         def result = gitHubFilter.locationSearch('anyLocationString')
         then:
@@ -14,8 +21,6 @@ class GitHubFilterTest extends Specification{
 
     def "when a search is initiated the API is invoked with the search criteria"() {
         setup:
-	def gitHubAPI = Mock(GitHubAPI)
-        GitHubFilter gitHubFilter = new GitHubFilter(gitHubAPI)
 	gitHubAPI.search('anyLocationString') >> {[]}
         when:
         def result = gitHubFilter.locationSearch('anyLocationString')
