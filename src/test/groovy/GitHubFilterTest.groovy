@@ -12,7 +12,7 @@ class GitHubFilterTest extends Specification{
 
     def "location search returns list"() {
         setup:
-	gitHubAPI.search('anyLocationString') >> {[]}
+	gitHubAPI.search(_) >> {[]}
         when:
         def result = gitHubFilter.locationSearch('anyLocationString')
         then:
